@@ -1,4 +1,4 @@
-# Omnibar
+# BreadcrumbBarEx
 
 Proof of concept for custom breacrumbBar.
 
