@@ -27,61 +27,19 @@
 			<Setter.Value>
 				<ControlTemplate TargetType="local:BreadcrumbBarItemEx">
 					<Grid x:Name="PART_LayoutRoot" CornerRadius="{TemplateBinding CornerRadius}">
-						<Grid.Resources>
-							<Flyout x:Name="PART_EllipsisFlyout" ShouldConstrainToRootBounds="False">
-								<Flyout.FlyoutPresenterStyle>
-									<Style TargetType="FlyoutPresenter">
-										<Setter Property="Background" Value="{ThemeResource BreadcrumbBarEllipsisFlyoutPresenterBackground}" />
-										<Setter Property="BorderBrush" Value="{ThemeResource BreadcrumbBarEllipsisFlyoutPresenterBorderBrush}" />
-										<Setter Property="BorderThickness" Value="{ThemeResource BreadcrumbBarEllipsisFlyoutPresenterBorderThemeThickness}" />
-										<Setter Property="Padding" Value="0,2" />
-										<Setter Property="ScrollViewer.HorizontalScrollMode" Value="Disabled" />
-										<Setter Property="ScrollViewer.VerticalScrollMode" Value="Auto" />
-										<Setter Property="ScrollViewer.VerticalScrollBarVisibility" Value="Auto" />
-										<Setter Property="ScrollViewer.IsHorizontalRailEnabled" Value="False" />
-										<Setter Property="ScrollViewer.IsVerticalRailEnabled" Value="False" />
-										<Setter Property="ScrollViewer.ZoomMode" Value="Disabled" />
-										<Setter Property="MaxWidth" Value="{ThemeResource FlyoutThemeMaxWidth}" />
-										<Setter Property="MinHeight" Value="40" />
-										<Setter Property="CornerRadius" Value="{ThemeResource OverlayCornerRadius}" />
-										<Setter Property="Template">
-											<Setter.Value>
-												<ControlTemplate TargetType="FlyoutPresenter">
-													<Grid
-														Background="{TemplateBinding Background}"
-														BackgroundSizing="InnerBorderEdge"
-														CornerRadius="{TemplateBinding CornerRadius}">
-														<ScrollViewer
-															x:Name="FlyoutPresenterScrollViewer"
-															Margin="{TemplateBinding Padding}"
-															AutomationProperties.AccessibilityView="Raw"
-															Content="{TemplateBinding Content}"
-															HorizontalScrollBarVisibility="{TemplateBinding ScrollViewer.HorizontalScrollBarVisibility}"
-															HorizontalScrollMode="{TemplateBinding ScrollViewer.HorizontalScrollMode}"
-															IsHorizontalRailEnabled="{TemplateBinding ScrollViewer.IsHorizontalRailEnabled}"
-															IsVerticalRailEnabled="{TemplateBinding ScrollViewer.IsVerticalRailEnabled}"
-															VerticalScrollBarVisibility="{TemplateBinding ScrollViewer.VerticalScrollBarVisibility}"
-															VerticalScrollMode="{TemplateBinding ScrollViewer.VerticalScrollMode}"
-															ZoomMode="{TemplateBinding ScrollViewer.ZoomMode}" />
-														<Border
-															x:Name="FlyoutPresenterBorder"
-															BorderBrush="{TemplateBinding BorderBrush}"
-															BorderThickness="{TemplateBinding BorderThickness}"
-															CornerRadius="{TemplateBinding CornerRadius}" />
-													</Grid>
-												</ControlTemplate>
-											</Setter.Value>
-										</Setter>
-									</Style>
-								</Flyout.FlyoutPresenterStyle>
-							</Flyout>
-						</Grid.Resources>
-
 						<Grid.ColumnDefinitions>
 							<ColumnDefinition x:Name="PART_ContentColumn" Width="Auto" />
 							<ColumnDefinition x:Name="PART_ChevronColumn" Width="Auto" />
 						</Grid.ColumnDefinitions>
 
+						<Grid.Resources>
+							<Flyout
+								x:Name="PART_EllipsisFlyout"
+								FlyoutPresenterStyle="{StaticResource BreadcrumbEllipsisFlyoutStyle}"
+								ShouldConstrainToRootBounds="False" />
+						</Grid.Resources>
+
+						<!--  Item Button  -->
 						<Button
 							x:Name="PART_ItemButton"
 							Height="34"
@@ -121,6 +79,7 @@
 
 						</Button>
 
+						<!--  Chevron Button  -->
 						<Button
 							x:Name="PART_ChevronButton"
 							Grid.Column="1"
@@ -136,9 +95,12 @@
 
 							<Button.Flyout>
 								<MenuFlyout Placement="Bottom">
-									<MenuFlyoutItem Text="A" />
+									<MenuFlyoutItem Text="Folder 1" />
+									<MenuFlyoutItem Text="Folder 2" />
+									<MenuFlyoutItem Text="Folder 3" />
 								</MenuFlyout>
 							</Button.Flyout>
+
 							<AnimatedIcon
 								Width="{ThemeResource BreadcrumbBarChevronFontSize}"
 								Height="{ThemeResource BreadcrumbBarChevronFontSize}"
@@ -409,6 +371,50 @@
 								</VisualState>
 							</VisualStateGroup>
 						</VisualStateManager.VisualStateGroups>
+					</Grid>
+				</ControlTemplate>
+			</Setter.Value>
+		</Setter>
+	</Style>
+
+	<Style x:Key="BreadcrumbEllipsisFlyoutStyle" TargetType="FlyoutPresenter">
+		<Setter Property="Background" Value="{ThemeResource BreadcrumbBarEllipsisFlyoutPresenterBackground}" />
+		<Setter Property="BorderBrush" Value="{ThemeResource BreadcrumbBarEllipsisFlyoutPresenterBorderBrush}" />
+		<Setter Property="BorderThickness" Value="{ThemeResource BreadcrumbBarEllipsisFlyoutPresenterBorderThemeThickness}" />
+		<Setter Property="Padding" Value="0,2" />
+		<Setter Property="ScrollViewer.HorizontalScrollMode" Value="Disabled" />
+		<Setter Property="ScrollViewer.VerticalScrollMode" Value="Auto" />
+		<Setter Property="ScrollViewer.VerticalScrollBarVisibility" Value="Auto" />
+		<Setter Property="ScrollViewer.IsHorizontalRailEnabled" Value="False" />
+		<Setter Property="ScrollViewer.IsVerticalRailEnabled" Value="False" />
+		<Setter Property="ScrollViewer.ZoomMode" Value="Disabled" />
+		<Setter Property="MaxWidth" Value="{ThemeResource FlyoutThemeMaxWidth}" />
+		<Setter Property="MinHeight" Value="40" />
+		<Setter Property="CornerRadius" Value="{ThemeResource OverlayCornerRadius}" />
+		<Setter Property="Template">
+			<Setter.Value>
+				<ControlTemplate TargetType="FlyoutPresenter">
+					<Grid
+						Background="{TemplateBinding Background}"
+						BackgroundSizing="InnerBorderEdge"
+						CornerRadius="{TemplateBinding CornerRadius}">
+						<ScrollViewer
+							x:Name="FlyoutPresenterScrollViewer"
+							Margin="{TemplateBinding Padding}"
+							AutomationProperties.AccessibilityView="Raw"
+							Content="{TemplateBinding Content}"
+							HorizontalScrollBarVisibility="{TemplateBinding ScrollViewer.HorizontalScrollBarVisibility}"
+							HorizontalScrollMode="{TemplateBinding ScrollViewer.HorizontalScrollMode}"
+							IsHorizontalRailEnabled="{TemplateBinding ScrollViewer.IsHorizontalRailEnabled}"
+							IsVerticalRailEnabled="{TemplateBinding ScrollViewer.IsVerticalRailEnabled}"
+							VerticalScrollBarVisibility="{TemplateBinding ScrollViewer.VerticalScrollBarVisibility}"
+							VerticalScrollMode="{TemplateBinding ScrollViewer.VerticalScrollMode}"
+							ZoomMode="{TemplateBinding ScrollViewer.ZoomMode}" />
+						<Border
+							x:Name="FlyoutPresenterBorder"
+							BorderBrush="{TemplateBinding BorderBrush}"
+							BorderThickness="{TemplateBinding BorderThickness}"
+							CornerRadius="{TemplateBinding CornerRadius}" />
 					</Grid>
 				</ControlTemplate>
 			</Setter.Value>

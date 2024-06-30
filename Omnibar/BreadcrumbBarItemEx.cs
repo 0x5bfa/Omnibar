@@ -1,15 +1,13 @@
-﻿using Microsoft.UI.Xaml;
+﻿// Copyright (c) 2024 Files Community
+// Licensed under the MIT License. See the LICENSE.
+
+using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Controls.Primitives;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Omnibar
 {
-	internal class BreadcrumbBarItemEx : BreadcrumbBarItem
+	public partial class BreadcrumbBarItemEx : BreadcrumbBarItem
 	{
 		public BreadcrumbBarItemEx()
 		{
@@ -25,7 +23,7 @@ namespace Omnibar
 				button.RegisterPropertyChangedCallback(ButtonBase.IsPressedProperty, (sender, args) =>
 				{
 					VisualStateManager.GoToState(button, "Pressed", true);
-					VisualStateManager.GoToState(button, button.IsPressed ? "Expanded" : "NotExpanded", true);
+					VisualStateManager.GoToState(button, "Expanded", true);
 				});
 
 				button.RegisterPropertyChangedCallback(ButtonBase.IsPointerOverProperty, (sender, args) =>
